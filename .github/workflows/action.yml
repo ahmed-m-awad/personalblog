@@ -66,5 +66,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ahmedmohamedawad/personalblog:latest
-         
+          tags: ahmedmohamedawad/personalblog:latest,ahmedmohamedawad/personalblog:${{ github.ref_name }}
+          labels: ${{ steps.meta.outputs.labels }}
