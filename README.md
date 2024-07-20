@@ -1,4 +1,5 @@
 # personal Blog
+![example workflow](https://github.com/ahmed-m-awad/personalblog/actions/workflows/action.yml/badge.svg)
 
 A simple blog application built with Flask.
 
