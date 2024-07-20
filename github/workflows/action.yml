@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+     - app.py
+     - Dockerfile
+     - github
+     - templates
     tags:
       - '*'
 
