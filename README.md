@@ -11,6 +11,7 @@ A simple blog application built with Flask.
 - [Usage](#usage)
 - [Testing](#testing)
 - [Docker](#docker)
+- [Deploying with Ansible and Terraform](#Deploying-with-Ansible-and-Terraform)
 
 
 ## Introduction
@@ -77,3 +78,11 @@ docker pull ahmedmohamedawad/presonalblog:latest
 ```bash
 docker run -p 5000:5000 ahmedmohamedawad/presonalblog:latest
 ```
+## Deploying with Ansible and Terraform
+
+1. Set Up Terraform: Install Terraform and configure AWS credentials.
+2. Provision EC2 Instances: Use Terraform to create and launch three EC2 instances.
+3. Configure Ansible: Create an inventory file with the IP addresses of the EC2 instances.
+4. Install Docker with Ansible: Run an Ansible playbook to install Docker on the instances.
+5. Deploy Flask App: Use Ansible to pull the Docker image and run the Flask application on the EC2 instances.
+
