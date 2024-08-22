@@ -59,7 +59,7 @@ resource "aws_instance" "deleteme" {
   key_name               = "vockey"
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
   tags = {
-    Name = "machine-${count.index + 1}"
+    Name = "es-instance-${count.index + 1}"
   }
   
 }
