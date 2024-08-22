@@ -54,4 +54,5 @@ jobs:
           context: .
           push: true
           tags: ahmedmohamedawad/personalblog:latest,ahmedmohamedawad/personalblog:${{ github.ref_name }}
+          
          
