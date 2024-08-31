@@ -12,10 +12,10 @@ x-common-config: &common
 services:
   app:
     <<: *common
-    image: sh3b0/app_python:latest
+    image: ahmedmohamedawad/personalblog:latest
     container_name: app
     ports:
-      - "8080:8080"
+      - "5000:5000"
 
   loki:
     <<: *common
