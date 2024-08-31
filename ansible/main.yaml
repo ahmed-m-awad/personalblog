@@ -1,0 +1,61 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+        state: present
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+        update_cache: yes
+
+    - name: Start Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add user to the docker group
+      ansible.builtin.user:
+        name: "{{ ansible_env.SUDO_USER }}"
+        append: true
+        groups: docker
+
+    - name: Reset SSH connection
+      ansible.builtin.meta: "reset_connection"
+
+    - name: Pull Docker image from DockerHub
+      docker_image:
+        name: ahmedmohamedawad/personalblog:main
+        source: pull
+
+    - name: Run Docker container
+      docker_container:
+        name: app
+        image: ahmedmohamedawad/personalblog:main
+        state: started
+        restart: true
+        restart_policy: always
+        ports:
+          - "80:5000" # Adjust ports as needed
+      
